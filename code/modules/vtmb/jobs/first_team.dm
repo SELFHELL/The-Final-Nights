@@ -15,7 +15,8 @@
 		/obj/item/gun/ballistic/automatic/vampire/beretta=1,
 		/obj/item/ammo_box/vampire/c556/silver = 1,
 		/obj/item/vamp/keys/pentex = 1,
-		/obj/item/veil_contract = 1
+		/obj/item/veil_contract = 1,
+		/obj/item/storage/firstaid/ifak = 2
 		)
 
 /datum/antagonist/first_team/proc/equip_first_team()
@@ -43,24 +44,24 @@
 
 /datum/antagonist/first_team/proc/offer_loadout()
 	var/list/loadouts = list(
-		"Flamethrower",
-		"Medic",
-		"Sniper",
-		"Ammo Carrier"
+		"Exterminator",
+		"Field Medic",
+		"Specialist",
+		"Rifleman"
 	)
 	var/loadout_type = input(owner.current, "Choose your loadout:", "Loadout Selection") in loadouts
 	switch(loadout_type)
-		if("Flamethrower")
+		if("Exterminator")
 			owner.current.put_in_r_hand(new /obj/item/vampire_flamethrower(owner.current))
 			owner.current.put_in_l_hand(new /obj/item/gas_can/full(owner.current))
-		if("Medic")
+		if("Field Medic")
 			owner.current.put_in_r_hand(new /obj/item/storage/firstaid/tactical(owner.current))
-		if("Sniper")
+		if("Specialist")
 			owner.current.put_in_r_hand(new /obj/item/gun/ballistic/automatic/vampire/sniper(owner.current))
 			owner.current.put_in_l_hand(new /obj/item/ammo_box/vampire/c50(owner.current))
-		if("Ammo Carrier")
-			owner.current.put_in_r_hand(new /obj/item/ammo_box/vampire/c556/incendiary(owner.current))
-			owner.current.put_in_l_hand(new /obj/item/ammo_box/vampire/c556/silver(owner.current))
+		if("Rifleman")
+			owner.current.put_in_r_hand(new /obj/item/ammo_box/vampire/c556/bale(owner.current))
+			owner.current.put_in_l_hand(new /obj/item/ammo_box/vampire/c556/bale(owner.current))
 
 /obj/effect/landmark/start/first_team
 	name = "First Team"
@@ -509,6 +510,44 @@
 	can_suppress = FALSE
 	recoil = 2
 
+/obj/item/ammo_box/vampire/c556/bale
+	name = "balefire ammo box (5.56)"
+	icon = 'modular_tfn/modules/first_team/icons/ammo.dmi'
+	icon_state = "556box-bale"
+	ammo_type = /obj/item/ammo_casing/vampire/c556mm/bale
+
+
+/obj/item/ammo_casing/vampire/c556mm/bale
+	name = "green 5.56mm bullet casing"
+	desc = "A modified 5.56mm bullet casing."
+	caliber = CALIBER_556
+	projectile_type = /obj/projectile/beam/beam_rifle/vampire/vamp556mm/bale
+	icon = 'modular_tfn/modules/first_team/icons/ammo.dmi'
+	icon_state = "b556"
+	base_iconstate = "b556"
+
+/obj/projectile/beam/beam_rifle/vampire/vamp556mm/bale
+	armour_penetration = 50
+	damage = 35
+	var/bloodloss = 1
+
+/obj/projectile/beam/beam_rifle/vampire/vamp556mm/bale/on_hit(atom/target, blocked = FALSE)
+	if(iskindred(target) || isghoul(target))
+		var/mob/living/carbon/human/H = target
+		if(H.bloodpool == 0)
+			to_chat(H, span_warning("only ash remains in my veins"))
+			return
+		H.bloodpool = max(H.bloodpool - bloodloss, 0)
+		to_chat(H, span_warning("green flames errupt from the bullets impact, boiling your blood"))
+
+	if(iswerewolf(target) || isgarou(target))
+		var/mob/living/carbon/M = target
+		if(M.auspice.gnosis)
+			if(prob(50))
+				adjust_gnosis(-1, M)
+		M.apply_damage(20, CLONE)
+		M.apply_status_effect(STATUS_EFFECT_SILVER_SLOWDOWN)
+
 /obj/item/ammo_box/magazine/px66f
 	name = "PX66F magazine (5.56mm)"
 	icon = 'modular_tfn/modules/first_team/icons/ammo.dmi'
@@ -517,7 +556,7 @@
 	worn_icon = 'modular_tfn/modules/first_team/icons/worn.dmi'
 	onflooricon = 'modular_tfn/modules/first_team/icons/onfloor.dmi'
 	icon_state = "px66f"
-	ammo_type = /obj/item/ammo_casing/vampire/c556mm
+	ammo_type = /obj/item/ammo_casing/vampire/c556mm/bale
 	caliber = CALIBER_556
 	max_ammo = 30
 	multiple_sprites = AMMO_BOX_FULL_EMPTY

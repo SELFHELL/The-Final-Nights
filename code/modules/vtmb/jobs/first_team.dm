@@ -16,6 +16,7 @@
 		/obj/item/ammo_box/vampire/c556/silver = 1,
 		/obj/item/vamp/keys/pentex = 1,
 		/obj/item/veil_contract = 1,
+		/obj/item/grenade/frag = 3,
 		/obj/item/storage/firstaid/ifak = 2
 		)
 
@@ -57,8 +58,8 @@
 		if("Field Medic")
 			owner.current.put_in_r_hand(new /obj/item/storage/firstaid/tactical(owner.current))
 		if("Specialist")
-			owner.current.put_in_r_hand(new /obj/item/gun/ballistic/automatic/vampire/sniper(owner.current))
-			owner.current.put_in_l_hand(new /obj/item/ammo_box/vampire/c50(owner.current))
+			owner.current.put_in_r_hand(new /obj/item/gun/ballistic/shotgun/vampire/px12r(owner.current))
+			owner.current.put_in_l_hand(new /obj/item/ammo_box/vampire/f12g(owner.current))
 		if("Rifleman")
 			owner.current.put_in_r_hand(new /obj/item/ammo_box/vampire/c556/bale(owner.current))
 			owner.current.put_in_l_hand(new /obj/item/ammo_box/vampire/c556/bale(owner.current))
@@ -516,7 +517,6 @@
 	icon_state = "556box-bale"
 	ammo_type = /obj/item/ammo_casing/vampire/c556mm/bale
 
-
 /obj/item/ammo_casing/vampire/c556mm/bale
 	name = "green 5.56mm bullet casing"
 	desc = "A modified 5.56mm bullet casing."
@@ -549,6 +549,33 @@
 		playsound(M, 'modular_tfn/modules/first_team/audio/balefire.ogg', rand(10,15), TRUE)
 		M.apply_status_effect(STATUS_EFFECT_SILVER_SLOWDOWN)
 
+/obj/item/ammo_casing/vampire/c12g/f12g
+	name = "Frag-12g shell casing"
+	desc = "A 12g explosive shell casing."
+	caliber = CALIBER_12G
+	projectile_type = /obj/projectile/beam/beam_rifle/vampire/f12g
+	icon = 'modular_tfn/modules/first_team/icons/ammo.dmi'
+	icon_state = "f12"
+	base_iconstate = "f12"
+
+/obj/projectile/beam/beam_rifle/vampire/f12g
+	name = "12g explosive slug"
+	damage = 60
+	armour_penetration = 15
+	bare_wound_bonus = 10
+	wound_bonus = 5
+
+/obj/projectile/beam/beam_rifle/vampire/f12g/on_hit(atom/target, blocked = FALSE)
+	explosion(target, -1, 0, 2)
+	return BULLET_ACT_HIT
+
+/obj/item/ammo_box/vampire/f12g
+	name = "ammo box (f12g)"
+	icon = 'modular_tfn/modules/first_team/icons/ammo.dmi'
+	icon_state = "12box_frag"
+	ammo_type = /obj/item/ammo_casing/vampire/c12g/f12g
+	max_ammo = 40
+
 /obj/item/ammo_box/magazine/px66f
 	name = "PX66F magazine (5.56mm)"
 	icon = 'modular_tfn/modules/first_team/icons/ammo.dmi'
@@ -562,10 +589,22 @@
 	max_ammo = 30
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
 
+/obj/item/ammo_box/magazine/internal/px12r
+	name = "shotgun internal magazine"
+	ammo_type = /obj/item/ammo_casing/vampire/c12g/f12g
+	caliber = CALIBER_12G
+	multiload = FALSE
+	max_ammo = 8
+	masquerade_violating = FALSE
+
 /obj/item/gun/ballistic/automatic/response/px66f
 	name = "\improper PX66F Rifle"
 	desc = "A three-round burst 5.56 death machine, with a Spiral brand below the barrel."
 	icon = 'modular_tfn/modules/first_team/icons/48x32weapons.dmi'
+	lefthand_file = 'modular_tfn/modules/first_team/icons/righthand.dmi'
+	righthand_file = 'modular_tfn/modules/first_team/icons/lefthand.dmi'
+	worn_icon = 'modular_tfn/modules/first_team/icons/worn.dmi'
+	onflooricon = 'modular_tfn/modules/first_team/icons/onfloor.dmi'
 	icon_state = "px66f"
 	inhand_icon_state = "px66f"
 	worn_icon_state = "rifle"
@@ -586,4 +625,29 @@
 	. = ..()
 	AddComponent(/datum/component/selling, 350, "aug", FALSE)
 
-//our hallowed lord in hell, forgive this shitcode for it is plenty
+
+/obj/item/gun/ballistic/shotgun/vampire/px12r
+	name = "/improper PX12R Breaching Shotgun"
+	desc = "A highly modified 12G Shotgun designed to fire Frag-12 explosive breaching rounds"
+	icon = 'modular_tfn/modules/first_team/icons/48x32weapons.dmi'
+	lefthand_file = 'modular_tfn/modules/first_team/icons/righthand.dmi'
+	righthand_file = 'modular_tfn/modules/first_team/icons/lefthand.dmi'
+	worn_icon = 'modular_tfn/modules/first_team/icons/worn.dmi'
+	onflooricon = 'modular_tfn/modules/first_team/icons/onfloor.dmi'
+	w_class = WEIGHT_CLASS_BULKY
+	weapon_weight = WEAPON_MEDIUM
+	icon_state = "px12r"
+	inhand_icon_state = "px12r"
+	worn_icon_state = "px12r"
+	recoil = 6
+	fire_delay = 6
+	mag_type = /obj/item/ammo_box/magazine/internal/vampshotgun
+	can_be_sawn_off	= FALSE
+	fire_sound = 'modular_tfn/modules/first_team/audio/shotgun_firing.ogg'
+	load_sound = 'modular_tfn/modules/first_team/audio/shell_load.ogg'
+	rack_sound = 'modular_tfn/modules/first_team/audio/cycling.ogg'
+	recoil = 4
+	inhand_x_dimension = 32
+	inhand_y_dimension = 32
+
+//our hallowed lord RNJesus in heaven, forgive this shitcode for it is plenty

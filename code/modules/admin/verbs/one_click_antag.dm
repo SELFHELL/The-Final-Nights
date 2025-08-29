@@ -290,7 +290,7 @@
 			return TRUE
 		else
 			return FALSE
-
+//START TFN CHANGE
 /datum/admins/proc/makeFIRST()
 	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you wish to be considered for a squad of FIRST Operators?", ROLE_FIRST_TEAM, null)
 	var/list/mob/dead/observer/chosen = list()
@@ -328,7 +328,7 @@
 		return TRUE
 	else
 		return FALSE
-
+//END TFN CHANGE
 /datum/admins/proc/makeNukeTeam()
 	var/datum/game_mode/nuclear/temp = new
 	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you wish to be considered for a nuke team being sent in?", ROLE_OPERATIVE, temp)

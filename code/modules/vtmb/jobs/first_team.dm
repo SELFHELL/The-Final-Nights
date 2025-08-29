@@ -528,7 +528,7 @@
 
 /obj/projectile/beam/beam_rifle/vampire/vamp556mm/bale
 	armour_penetration = 50
-	damage = 35
+	damage = 45
 	var/bloodloss = 1
 
 /obj/projectile/beam/beam_rifle/vampire/vamp556mm/bale/on_hit(atom/target, blocked = FALSE)
@@ -538,14 +538,15 @@
 			to_chat(H, span_warning("only ash remains in my veins"))
 			return
 		H.bloodpool = max(H.bloodpool - bloodloss, 0)
+		playsound(H, 'modular_tfn/modules/first_team/audio/balefire.ogg', rand(10,15), TRUE)
 		to_chat(H, span_warning("green flames errupt from the bullets impact, boiling your blood"))
-
 	if(iswerewolf(target) || isgarou(target))
 		var/mob/living/carbon/M = target
 		if(M.auspice.gnosis)
 			if(prob(50))
 				adjust_gnosis(-1, M)
 		M.apply_damage(20, CLONE)
+		playsound(M, 'modular_tfn/modules/first_team/audio/balefire.ogg', rand(10,15), TRUE)
 		M.apply_status_effect(STATUS_EFFECT_SILVER_SLOWDOWN)
 
 /obj/item/ammo_box/magazine/px66f

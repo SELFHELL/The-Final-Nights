@@ -4,6 +4,7 @@
 	uniform = /obj/item/clothing/under/response/firstteam_uniform
 	gloves = /obj/item/clothing/gloves/response/firstteam
 	mask = /obj/item/clothing/mask/vampire/balaclava
+	glasses = /obj/item/clothing/glasses/night
 	r_pocket = /obj/item/flashlight
 	l_pocket = /obj/item/ammo_box/magazine/px66f
 	shoes = /obj/item/clothing/shoes/response/firstteam
@@ -566,6 +567,7 @@
 	wound_bonus = 5
 
 /obj/projectile/beam/beam_rifle/vampire/f12g/on_hit(atom/target, blocked = FALSE)
+	..()
 	explosion(target, -1, 0, 2)
 	return BULLET_ACT_HIT
 
@@ -639,7 +641,7 @@
 	icon_state = "px12r"
 	inhand_icon_state = "px12r"
 	worn_icon_state = "px12r"
-	recoil = 6
+	recoil = 3
 	fire_delay = 6
 	mag_type = /obj/item/ammo_box/magazine/internal/vampshotgun
 	can_be_sawn_off	= FALSE

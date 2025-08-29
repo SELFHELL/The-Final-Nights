@@ -500,15 +500,6 @@
 	desc = "A completely blacked out uniform with a large '1' symbol sewn onto the shoulder-pad."
 	icon_state = "ftuni"
 
-/obj/item/gun/ballistic/response
-	icon = 'code/modules/wod13/weapons.dmi'
-	lefthand_file = 'modular_tfn/modules/first_team/icons/righthand.dmi'
-	righthand_file = 'modular_tfn/modules/first_team/icons/lefthand.dmi'
-	worn_icon = 'modular_tfn/modules/first_team/icons/worn.dmi'
-	onflooricon = 'modular_tfn/modules/first_team/icons/onfloor.dmi'
-	can_suppress = FALSE
-	recoil = 2
-
 /obj/item/gun/ballistic/automatic/response
 	icon = 'code/modules/wod13/weapons.dmi'
 	lefthand_file = 'modular_tfn/modules/first_team/icons/righthand.dmi'

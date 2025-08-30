@@ -14,7 +14,7 @@
 	backpack_contents = list(
 		/obj/item/ammo_box/magazine/px66f = 3,
 		/obj/item/gun/ballistic/automatic/vampire/beretta=1,
-		/obj/item/ammo_box/vampire/c556/silver = 1,
+		/obj/item/ammo_box/vampire/c556/bale = 1,
 		/obj/item/vamp/keys/pentex = 1,
 		/obj/item/veil_contract = 1,
 		/obj/item/grenade/frag = 3,
@@ -604,7 +604,7 @@
 	masquerade_violating = FALSE
 
 /obj/item/gun/ballistic/automatic/response/px66f
-	name = "\improper PX66F Rifle"
+	name = "\improper PX66F Rifle" //four bursts to kill a fullHP crinos
 	desc = "A three-round burst 5.56 death machine, with a Spiral brand below the barrel."
 	icon = 'modular_tfn/modules/first_team/icons/48x32weapons.dmi'
 	lefthand_file = 'modular_tfn/modules/first_team/icons/righthand.dmi'
@@ -631,7 +631,7 @@
 	. = ..()
 	AddComponent(/datum/component/selling, 350, "aug", FALSE)
 
-/obj/item/gun/ballistic/shotgun/vampire/px12r
+/obj/item/gun/ballistic/shotgun/vampire/px12r  //six shots to merc a garou
 	name = "/improper PX12R Breaching Shotgun"
 	desc = "A highly modified 12G Shotgun designed to fire Frag-12 explosive breaching rounds"
 	icon = 'modular_tfn/modules/first_team/icons/48x32weapons.dmi'

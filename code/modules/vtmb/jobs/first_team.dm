@@ -104,7 +104,7 @@
 	owner.special_role = null
 
 /datum/antagonist/first_team/greet()
-	to_chat(owner.current,span_alertsyndie("<You're in the First Team."))
+	to_chat(owner.current,span_alertsyndie("You're in the First Team."))
 	to_chat(owner,span_notice("You are a [first_team_team ? first_team_team.first_team_name : "first team"] operator!"))
 	owner.announce_objectives()
 

@@ -566,7 +566,7 @@
 /obj/projectile/beam/beam_rifle/vampire/f12g
 	name = "12g explosive slug"
 	damage = 60
-	armour_penetration = 15
+	armour_penetration = 50
 	bare_wound_bonus = 10
 	wound_bonus = 5
 
@@ -633,7 +633,7 @@
 	AddComponent(/datum/component/selling, 350, "aug", FALSE)
 
 /obj/item/gun/ballistic/shotgun/vampire/px12r  //DONT DISTRIBUTE IN MAPPING
-	name = "/improper PX12R Breaching Shotgun"
+	name = "\improper PX12R Breaching Shotgun"
 	desc = "A highly modified 12G Shotgun designed to fire Frag-12 explosive breaching rounds"
 	icon = 'modular_tfn/modules/first_team/icons/48x32weapons.dmi'
 	lefthand_file = 'modular_tfn/modules/first_team/icons/righthand.dmi'

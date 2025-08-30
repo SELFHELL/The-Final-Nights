@@ -656,4 +656,3 @@
 	inhand_x_dimension = 32
 	inhand_y_dimension = 32
 
-//our hallowed lord RNJesus in heaven, forgive this shitcode for it is plenty

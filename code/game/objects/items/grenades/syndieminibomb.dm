@@ -29,8 +29,8 @@
 	icon = 'modular_tfn/modules/first_team/icons/ammo.dmi' //TFN Change -- FIRST Response Team
 	lefthand_file = 'modular_tfn/modules/first_team/icons/lefthand.dmi'
 	righthand_file = 'modular_tfn/modules/first_team/icons/righthand.dmi'
-	onflooricon = 'modular_tfn/modules/first_team/icons/onfloor.dmi' //END TFn Change
-	worn_icon_state = "frag"
+	onflooricon = 'modular_tfn/modules/first_team/icons/onfloor.dmi'
+	worn_icon_state = "frag" //END TFn Change
 	icon_state = "frag"
 	shrapnel_type = /obj/projectile/bullet/shrapnel
 	shrapnel_radius = 4

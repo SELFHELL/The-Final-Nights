@@ -512,7 +512,7 @@
 	can_suppress = FALSE
 	recoil = 2
 
-/obj/item/ammo_box/vampire/c556/bale
+/obj/item/ammo_box/vampire/c556/bale //DONT EVER PUT THIS IN A MAP
 	name = "balefire ammo box (5.56)"
 	icon = 'modular_tfn/modules/first_team/icons/ammo.dmi'
 	onflooricon = 'modular_tfn/modules/first_team/icons/onfloor.dmi'
@@ -539,6 +539,7 @@
 		var/mob/living/carbon/human/H = target
 		if(H.bloodpool == 0)
 			to_chat(H, span_warning("only ash remains in my veins"))
+			H.apply_damage(20, BURN)
 			return
 		H.bloodpool = max(H.bloodpool - bloodloss, 0)
 		playsound(H, 'modular_tfn/modules/first_team/audio/balefire.ogg', rand(10,15), TRUE)
@@ -574,7 +575,7 @@
 	explosion(target, -1, 0, 2)
 	return BULLET_ACT_HIT
 
-/obj/item/ammo_box/vampire/f12g
+/obj/item/ammo_box/vampire/f12g //DO NOT DISTRIBUTE NORMALLY
 	name = "ammo box (f12g)"
 	icon = 'modular_tfn/modules/first_team/icons/ammo.dmi'
 	onflooricon = 'modular_tfn/modules/first_team/icons/onfloor.dmi'
@@ -603,7 +604,7 @@
 	max_ammo = 8
 	masquerade_violating = FALSE
 
-/obj/item/gun/ballistic/automatic/response/px66f
+/obj/item/gun/ballistic/automatic/response/px66f //DO NOT DISTRIBUTE IN MAPPING
 	name = "\improper PX66F Rifle" //four bursts to kill a fullHP crinos
 	desc = "A three-round burst 5.56 death machine, with a Spiral brand below the barrel."
 	icon = 'modular_tfn/modules/first_team/icons/48x32weapons.dmi'
@@ -631,7 +632,7 @@
 	. = ..()
 	AddComponent(/datum/component/selling, 350, "aug", FALSE)
 
-/obj/item/gun/ballistic/shotgun/vampire/px12r  //six shots to merc a garou
+/obj/item/gun/ballistic/shotgun/vampire/px12r  //DONT DISTRIBUTE IN MAPPING
 	name = "/improper PX12R Breaching Shotgun"
 	desc = "A highly modified 12G Shotgun designed to fire Frag-12 explosive breaching rounds"
 	icon = 'modular_tfn/modules/first_team/icons/48x32weapons.dmi'

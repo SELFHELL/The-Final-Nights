@@ -13,9 +13,9 @@
 	var/dat = {"
 		<a href='byond://?src=[REF(src)];[HrefToken()];makeAntag=nationalguard'>Make National Guard Team (Requires Ghosts)</a><br>
 		<a href='byond://?src=[REF(src)];[HrefToken()];makeAntag=swat'>Make SWAT Team (Requires Ghosts)</a><br>
-		<a href='byond://?src=[REF(src)];[HrefToken()];makeAntag=first_team'>Make FIRST Team (Requires Ghosts)</a><br> // TFN EDIT ADDITION -- FIRST Response Team
+		<a href='byond://?src=[REF(src)];[HrefToken()];makeAntag=first_team'>Make FIRST Team (Requires Ghosts)</a><br>
 
-		"}
+		"} // TFN EDIT ADDITION -- FIRST Response Team
 
 /*	THESE WERE THE OPTIONS IN one_click_antag() previously. I kept them here only just in case...
 

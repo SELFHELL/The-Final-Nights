@@ -515,6 +515,7 @@
 /obj/item/ammo_box/vampire/c556/bale
 	name = "balefire ammo box (5.56)"
 	icon = 'modular_tfn/modules/first_team/icons/ammo.dmi'
+	onflooricon = 'modular_tfn/modules/first_team/icons/onfloor.dmi'
 	icon_state = "556box-bale"
 	ammo_type = /obj/item/ammo_casing/vampire/c556mm/bale
 
@@ -524,6 +525,7 @@
 	caliber = CALIBER_556
 	projectile_type = /obj/projectile/beam/beam_rifle/vampire/vamp556mm/bale
 	icon = 'modular_tfn/modules/first_team/icons/ammo.dmi'
+	onflooricon = 'modular_tfn/modules/first_team/icons/onfloor.dmi'
 	icon_state = "b556"
 	base_iconstate = "b556"
 
@@ -556,6 +558,7 @@
 	caliber = CALIBER_12G
 	projectile_type = /obj/projectile/beam/beam_rifle/vampire/f12g
 	icon = 'modular_tfn/modules/first_team/icons/ammo.dmi'
+	onflooricon = 'modular_tfn/modules/first_team/icons/onfloor.dmi'
 	icon_state = "f12"
 	base_iconstate = "f12"
 
@@ -574,6 +577,7 @@
 /obj/item/ammo_box/vampire/f12g
 	name = "ammo box (f12g)"
 	icon = 'modular_tfn/modules/first_team/icons/ammo.dmi'
+	onflooricon = 'modular_tfn/modules/first_team/icons/onfloor.dmi'
 	icon_state = "12box_frag"
 	ammo_type = /obj/item/ammo_casing/vampire/c12g/f12g
 	max_ammo = 40
@@ -593,7 +597,7 @@
 
 /obj/item/ammo_box/magazine/internal/px12r
 	name = "shotgun internal magazine"
-	ammo_type = /obj/item/ammo_casing/vampire/c12g/f12g
+	ammo_type = /obj/item/ammo_casing/vampire/c12g
 	caliber = CALIBER_12G
 	multiload = FALSE
 	max_ammo = 8
@@ -627,7 +631,6 @@
 	. = ..()
 	AddComponent(/datum/component/selling, 350, "aug", FALSE)
 
-
 /obj/item/gun/ballistic/shotgun/vampire/px12r
 	name = "/improper PX12R Breaching Shotgun"
 	desc = "A highly modified 12G Shotgun designed to fire Frag-12 explosive breaching rounds"
@@ -643,7 +646,7 @@
 	worn_icon_state = "px12r"
 	recoil = 3
 	fire_delay = 6
-	mag_type = /obj/item/ammo_box/magazine/internal/vampshotgun
+	mag_type = /obj/item/ammo_box/magazine/internal/px12r
 	can_be_sawn_off	= FALSE
 	fire_sound = 'modular_tfn/modules/first_team/audio/shotgun_firing.ogg'
 	load_sound = 'modular_tfn/modules/first_team/audio/shell_load.ogg'

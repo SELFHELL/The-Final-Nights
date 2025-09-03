@@ -32,7 +32,7 @@
 	H.set_species(/datum/species/human)
 	H.set_clan(null)
 	H.generation = 13
-	H.physique = 5
+	H.physique = 5 //I want to beat this codebase on the head with a rusty pipe.. apparently ERT's inheret stats from the host's character, necessitating them being manually set.
 	H.dexterity = 5
 	H.blood = 6
 	H.mentality = 7
@@ -671,6 +671,29 @@
 	recoil = 4
 	inhand_x_dimension = 32
 	inhand_y_dimension = 32
+
+
+/obj/item/gun/ballistic/automatic/l6_saw/ert
+	name = "\improper PX249F Light Machine Gun"
+	desc = "A modified M249 Machine Gun with an engraving of a Hydra on the grip"
+	icon = 'modular_tfn/modules/first_team/icons/48x32weapons.dmi'
+	icon_state = "px249f"
+	inhand_icon_state = "l6"
+	base_icon_state = "PX249F"
+	w_class = WEIGHT_CLASS_HUGE
+	slot_flags = 0
+	mag_type = /obj/item/ammo_box/magazine/mm712x82
+	weapon_weight = WEAPON_HEAVY
+	burst_size = 5
+	fire_delay = 2
+	spread = 6
+	fire_sound = 'sound/weapons/gun/l6/shot.ogg'
+	rack_sound = 'sound/weapons/gun/l6/l6_rack.ogg'
+	suppressed_sound = 'sound/weapons/gun/general/heavy_shot_suppressed.ogg'
+
+/obj/item/gun/ballistic/automatic/l6_saw/ert/update_overlays()
+	. = ..()
+	. += "px249f_door_[cover_open ? "open" : "closed"]"
 
 //------------Medical------------
 

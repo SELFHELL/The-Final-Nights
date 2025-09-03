@@ -4,7 +4,7 @@
 	uniform = /obj/item/clothing/under/response/firstteam_uniform
 	gloves = /obj/item/clothing/gloves/response/firstteam
 	mask = /obj/item/clothing/mask/vampire/balaclava
-	glasses = /obj/item/clothing/glasses/night
+	glasses = /obj/item/clothing/glasses/night/vamp/thermal
 	r_pocket = /obj/item/flashlight
 	l_pocket = /obj/item/ammo_box/magazine/px66f
 	shoes = /obj/item/clothing/shoes/response/firstteam
@@ -19,7 +19,9 @@
 		/obj/item/vamp/keys/pentex = 1,
 		/obj/item/veil_contract = 1,
 		/obj/item/grenade/frag = 3,
-		/obj/item/storage/firstaid/ifak = 2
+		/obj/item/storage/firstaid/ifak = 1,
+		/obj/item/reagent_containers/hypospray/medipen/vamp/ert = 1
+
 		)
 
 /datum/antagonist/first_team/proc/equip_first_team()
@@ -504,6 +506,13 @@
 	desc = "A completely blacked out uniform with a large '1' symbol sewn onto the shoulder-pad."
 	icon_state = "ftuni"
 
+//------------Glasses------------
+
+/obj/item/clothing/glasses/night/vamp/thermal
+	vision_flags = SEE_MOBS
+
+//------------Weapons------------
+
 /obj/item/gun/ballistic/automatic/response
 	icon = 'code/modules/wod13/weapons.dmi'
 	lefthand_file = 'modular_tfn/modules/first_team/icons/righthand.dmi'
@@ -657,15 +666,18 @@
 	inhand_x_dimension = 32
 	inhand_y_dimension = 32
 
+//------------Medical------------
+
 /obj/item/reagent_containers/hypospray/medipen/vamp/ert
 	name = "stimulant medipen"
-	desc = "Contains experimental combat drugs, vastly increasing your movement speed, reducing stuns, and disabling traumatic feedback for around five minutes. Good for two injections"
-	icon_state = "syndipen"
+	desc = "Contains experimental combat drugs, vastly increasing your movement speed, reducing stuns, and disabling traumatic feedback for around five minutes. DO NOT USE TWICE IN A ROW"
+	icon = 'modular_tfn/modules/first_team/icons/medical.dmi'
+	icon_state = "fpen"
 	inhand_icon_state = "tbpen"
-	base_icon_state = "syndipen"
+	base_icon_state = "fpen"
 	volume = 50
 	amount_per_transfer_from_this = 50
-	list_reagents = list(/datum/reagent/medicine/stimulants = 100)
+	list_reagents = list(/datum/reagent/medicine/vamp/ert = 100)
 
 /datum/reagent/medicine/vamp/ert
 	name = "Experimental Drugs"
@@ -694,10 +706,8 @@
 
 /datum/reagent/medicine/vamp/ert/on_mob_life(mob/living/carbon/M)
 	if(M.health < 50 && M.health > 0)
-		M.adjustOxyLoss(-1*REM, 0)
-		M.adjustToxLoss(-1*REM, 0)
-		M.adjustBruteLoss(-1*REM, 0)
-		M.adjustFireLoss(-1*REM, 0)
+		M.adjustBruteLoss(-0.5*REM, 0)
+		M.adjustFireLoss(-0.5*REM, 0)
 	M.AdjustAllImmobility(-60)
 	M.adjustStaminaLoss(-5*REM, 0)
 	..()

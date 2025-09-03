@@ -32,6 +32,12 @@
 	H.set_species(/datum/species/human)
 	H.set_clan(null)
 	H.generation = 13
+	H.physique = 5
+	H.dexterity = 5
+	H.blood = 6
+	H.mentality = 7
+	H.lockpicking = 6
+	H.athletics = 5
 	H.maxHealth = round((initial(H.maxHealth)-initial(H.maxHealth)/4)+(initial(H.maxHealth)/4)*(H.physique+13-H.generation))
 	H.health = round((initial(H.health)-initial(H.health)/4)+(initial(H.health)/4)*(H.physique+13-H.generation))
 	for(var/datum/action/A in H.actions)
@@ -672,6 +678,7 @@
 	name = "stimulant medipen"
 	desc = "Contains experimental combat drugs, vastly increasing your movement speed, reducing stuns, and disabling traumatic feedback for around five minutes. DO NOT USE TWICE IN A ROW"
 	icon = 'modular_tfn/modules/first_team/icons/medical.dmi'
+	onflooricon = 'modular_tfn/modules/first_team/icons/onfloor.dmi'
 	icon_state = "fpen"
 	inhand_icon_state = "tbpen"
 	base_icon_state = "fpen"

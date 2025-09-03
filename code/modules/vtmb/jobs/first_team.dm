@@ -11,6 +11,7 @@
 	belt = /obj/item/gun/ballistic/automatic/response/px66f
 	suit = /obj/item/clothing/suit/response/firstteam_armor
 	head = /obj/item/clothing/head/response/firstteam_helmet
+	implants = list(/obj/item/implant/explosive)
 	backpack_contents = list(
 		/obj/item/ammo_box/magazine/px66f = 3,
 		/obj/item/gun/ballistic/automatic/vampire/beretta=1,
@@ -655,4 +656,50 @@
 	recoil = 4
 	inhand_x_dimension = 32
 	inhand_y_dimension = 32
+
+/obj/item/reagent_containers/hypospray/medipen/vamp/ert
+	name = "stimulant medipen"
+	desc = "Contains experimental combat drugs, vastly increasing your movement speed, reducing stuns, and disabling traumatic feedback for around five minutes. Good for two injections"
+	icon_state = "syndipen"
+	inhand_icon_state = "tbpen"
+	base_icon_state = "syndipen"
+	volume = 50
+	amount_per_transfer_from_this = 50
+	list_reagents = list(/datum/reagent/medicine/stimulants = 100)
+
+/datum/reagent/medicine/vamp/ert
+	name = "Experimental Drugs"
+	description = "Increases stun resistance and movement speed in addition to restoring minor damage and weakness. Overdose causes weakness and toxin damage."
+	color = "#13c563"
+	metabolization_rate = 0.5 * REAGENTS_METABOLISM
+	overdose_threshold = 75
+
+/datum/reagent/medicine/vamp/ert/on_mob_metabolize(mob/living/L)
+	..()
+	L.add_movespeed_modifier(/datum/movespeed_modifier/reagent/stimulants)
+	ADD_TRAIT(L, TRAIT_STUNRESISTANCE, type)
+	ADD_TRAIT(L, TRAIT_NOHARDCRIT, type)
+	ADD_TRAIT(L, TRAIT_NOSOFTCRIT, type)
+	ADD_TRAIT(L, TRAIT_SLEEPIMMUNE, type)
+	ADD_TRAIT(L, TRAIT_IGNOREDAMAGESLOWDOWN, type)
+
+/datum/reagent/medicine/vamp/ert/on_mob_end_metabolize(mob/living/L)
+	L.remove_movespeed_modifier(/datum/movespeed_modifier/reagent/stimulants)
+	REMOVE_TRAIT(L, TRAIT_STUNRESISTANCE, type)
+	REMOVE_TRAIT(L, TRAIT_NOHARDCRIT, type)
+	REMOVE_TRAIT(L, TRAIT_NOSOFTCRIT, type)
+	REMOVE_TRAIT(L, TRAIT_SLEEPIMMUNE, type)
+	REMOVE_TRAIT(L, TRAIT_IGNOREDAMAGESLOWDOWN, type)
+	..()
+
+/datum/reagent/medicine/vamp/ert/on_mob_life(mob/living/carbon/M)
+	if(M.health < 50 && M.health > 0)
+		M.adjustOxyLoss(-1*REM, 0)
+		M.adjustToxLoss(-1*REM, 0)
+		M.adjustBruteLoss(-1*REM, 0)
+		M.adjustFireLoss(-1*REM, 0)
+	M.AdjustAllImmobility(-60)
+	M.adjustStaminaLoss(-5*REM, 0)
+	..()
+	. = 1
 

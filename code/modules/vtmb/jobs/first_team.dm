@@ -21,7 +21,7 @@
 		/obj/item/veil_contract = 1,
 		/obj/item/grenade/frag = 3,
 		/obj/item/storage/firstaid/ifak = 1,
-		/obj/item/reagent_containers/hypospray/medipen/vamp/ert = 1
+		/obj/item/reagent_containers/hypospray/medipen/first = 1
 
 		)
 
@@ -64,8 +64,7 @@
 	var/loadout_type = input(owner.current, "Choose your loadout:", "Loadout Selection") in loadouts
 	switch(loadout_type)
 		if("Exterminator")
-			owner.current.put_in_r_hand(new /obj/item/gun/ballistic/automatic/l6_saw/vamp/first(owner.current))
-			owner.current.put_in_l_hand(new /obj/item/ammo_box/magazine/px249f(owner.current))
+			owner.current.put_in_r_hand(new /obj/item/gun/ballistic/automatic/l6_saw/vamp(owner.current))
 		if("Field Medic")
 			owner.current.put_in_r_hand(new /obj/item/storage/firstaid/tactical(owner.current))
 		if("Specialist")
@@ -687,7 +686,7 @@
 	inhand_y_dimension = 32
 
 
-/obj/item/gun/ballistic/automatic/l6_saw/vamp/first
+/obj/item/gun/ballistic/automatic/l6_saw/vamp
 	name = "\improper PX249F Light Machine Gun"
 	desc = "A modified M249 Machine Gun with an engraving of a Hydra on the grip"
 	icon = 'modular_tfn/modules/first_team/icons/48x32weapons.dmi'
@@ -710,27 +709,35 @@
 	rack_sound = 'modular_tfn/modules/first_team/audio/m249rack.ogg'
 	suppressed_sound = 'sound/weapons/gun/general/heavy_shot_suppressed.ogg'
 
-/obj/item/gun/ballistic/automatic/l6_saw/vamp/first/update_icon_state()
+/obj/item/gun/ballistic/automatic/l6_saw/vamp/update_icon_state()
 	. = ..()
 	inhand_icon_state = "[base_icon_state][magazine ? "mag":"nomag"]"
 
-/obj/item/gun/ballistic/automatic/l6_saw/vamp/first/update_overlays()
+/obj/item/gun/ballistic/automatic/l6_saw/vamp/update_overlays()
 	. = ..()
 	. += "px249f_door_[cover_open ? "open" : "closed"]"
 
 //------------Medical------------
 
-/obj/item/reagent_containers/hypospray/medipen/vamp/ert
-	name = "stimulant medipen"
+
+/obj/item/reagent_containers/hypospray/medipen/first
+	name = "Stimulant autoinjector"
 	desc = "Contains experimental combat drugs, vastly increasing your movement speed, reducing stuns, and disabling traumatic feedback for around five minutes. DO NOT USE TWICE IN A ROW"
 	icon = 'modular_tfn/modules/first_team/icons/medical.dmi'
 	onflooricon = 'modular_tfn/modules/first_team/icons/onfloor.dmi'
 	icon_state = "fpen"
 	inhand_icon_state = "tbpen"
 	base_icon_state = "fpen"
-	volume = 50
+	volume = 100
 	amount_per_transfer_from_this = 50
 	list_reagents = list(/datum/reagent/medicine/vamp/ert = 100)
+
+/obj/item/reagent_containers/hypospray/medipen/first/update_icon_state()
+	. = ..()
+	if(reagents.total_volume >= volume)
+		icon_state = base_icon_state
+		return
+	icon_state = "[base_icon_state][(reagents.total_volume > 0) ? 1 : 0]"
 
 /datum/reagent/medicine/vamp/ert
 	name = "Experimental Drugs"

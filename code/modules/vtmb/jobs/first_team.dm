@@ -698,11 +698,11 @@
 	inhand_icon_state = "px249f"
 	base_icon_state = "px249f"
 	w_class = WEIGHT_CLASS_HUGE
+	bolt_type = BOLT_TYPE_LOCKING
+	show_bolt_icon = FALSE
 	slot_flags = 0
 	mag_type = /obj/item/ammo_box/magazine/px249f
 	weapon_weight = WEAPON_HEAVY
-	bolt_type = BOLT_TYPE_LOCKING
-	show_bolt_icon = FALSE
 	burst_size = 5
 	fire_delay = 2
 	spread = 6
@@ -710,7 +710,11 @@
 	rack_sound = 'modular_tfn/modules/first_team/audio/m249rack.ogg'
 	suppressed_sound = 'sound/weapons/gun/general/heavy_shot_suppressed.ogg'
 
-/obj/item/gun/ballistic/automatic/l6_saw/ert/update_overlays()
+/obj/item/gun/ballistic/automatic/l6_saw/vamp/first/update_icon_state()
+	. = ..()
+	inhand_icon_state = "[base_icon_state][magazine ? "mag":"nomag"]"
+
+/obj/item/gun/ballistic/automatic/l6_saw/vamp/first/update_overlays()
 	. = ..()
 	. += "px249f_door_[cover_open ? "open" : "closed"]"
 

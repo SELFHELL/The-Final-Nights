@@ -612,6 +612,21 @@
 	max_ammo = 30
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
 
+/obj/item/ammo_box/magazine/px249f
+	name = "PX249F box magazine (5.56mm)"
+	icon = 'modular_tfn/modules/first_team/icons/ammo.dmi'
+	lefthand_file = 'modular_tfn/modules/first_team/icons/righthand.dmi'
+	righthand_file = 'modular_tfn/modules/first_team/icons/lefthand.dmi'
+	worn_icon = 'modular_tfn/modules/first_team/icons/worn.dmi'
+	onflooricon = 'modular_tfn/modules/first_team/icons/onfloor.dmi'
+	icon_state = "px249f"
+	ammo_type = /obj/item/ammo_casing/vampire/c556mm/bale
+	caliber = CALIBER_556
+	max_ammo = 200
+	multiple_sprites = AMMO_BOX_FULL_EMPTY
+
+
+
 /obj/item/ammo_box/magazine/internal/px12r
 	name = "shotgun internal magazine"
 	ammo_type = /obj/item/ammo_casing/vampire/c12g
@@ -677,12 +692,15 @@
 	name = "\improper PX249F Light Machine Gun"
 	desc = "A modified M249 Machine Gun with an engraving of a Hydra on the grip"
 	icon = 'modular_tfn/modules/first_team/icons/48x32weapons.dmi'
+	lefthand_file = 'modular_tfn/modules/first_team/icons/righthand.dmi'
+	righthand_file = 'modular_tfn/modules/first_team/icons/lefthand.dmi'
+	onflooricon = 'modular_tfn/modules/first_team/icons/onfloor.dmi'
 	icon_state = "px249f"
-	inhand_icon_state = "l6"
-	base_icon_state = "PX249F"
+	inhand_icon_state = "px249f"
+	base_icon_state = "px249f"
 	w_class = WEIGHT_CLASS_HUGE
 	slot_flags = 0
-	mag_type = /obj/item/ammo_box/magazine/mm712x82
+	mag_type = /obj/item/ammo_box/magazine/px249f
 	weapon_weight = WEAPON_HEAVY
 	burst_size = 5
 	fire_delay = 2

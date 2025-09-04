@@ -11,6 +11,7 @@
 	belt = /obj/item/gun/ballistic/automatic/response/px66f
 	suit = /obj/item/clothing/suit/response/firstteam_armor
 	head = /obj/item/clothing/head/response/firstteam_helmet
+	back = /obj/item/storage/backpack/satchel
 	implants = list(/obj/item/implant/explosive)
 	backpack_contents = list(
 		/obj/item/ammo_box/magazine/px66f = 3,
@@ -63,8 +64,8 @@
 	var/loadout_type = input(owner.current, "Choose your loadout:", "Loadout Selection") in loadouts
 	switch(loadout_type)
 		if("Exterminator")
-			owner.current.put_in_r_hand(new /obj/item/vampire_flamethrower(owner.current))
-			owner.current.put_in_l_hand(new /obj/item/gas_can/full(owner.current))
+			owner.current.put_in_r_hand(new /obj/item/gun/ballistic/automatic/l6_saw/vamp/first(owner.current))
+			owner.current.put_in_l_hand(new /obj/item/ammo_box/magazine/px249f(owner.current))
 		if("Field Medic")
 			owner.current.put_in_r_hand(new /obj/item/storage/firstaid/tactical(owner.current))
 		if("Specialist")
@@ -625,8 +626,6 @@
 	max_ammo = 200
 	multiple_sprites = AMMO_BOX_FULL_EMPTY
 
-
-
 /obj/item/ammo_box/magazine/internal/px12r
 	name = "shotgun internal magazine"
 	ammo_type = /obj/item/ammo_casing/vampire/c12g
@@ -688,7 +687,7 @@
 	inhand_y_dimension = 32
 
 
-/obj/item/gun/ballistic/automatic/l6_saw/ert
+/obj/item/gun/ballistic/automatic/l6_saw/vamp/first
 	name = "\improper PX249F Light Machine Gun"
 	desc = "A modified M249 Machine Gun with an engraving of a Hydra on the grip"
 	icon = 'modular_tfn/modules/first_team/icons/48x32weapons.dmi'
@@ -702,11 +701,13 @@
 	slot_flags = 0
 	mag_type = /obj/item/ammo_box/magazine/px249f
 	weapon_weight = WEAPON_HEAVY
+	bolt_type = BOLT_TYPE_LOCKING
+	show_bolt_icon = FALSE
 	burst_size = 5
 	fire_delay = 2
 	spread = 6
-	fire_sound = 'sound/weapons/gun/l6/shot.ogg'
-	rack_sound = 'sound/weapons/gun/l6/l6_rack.ogg'
+	fire_sound = 'modular_tfn/modules/first_team/audio/m249fire.ogg'
+	rack_sound = 'modular_tfn/modules/first_team/audio/m249rack.ogg'
 	suppressed_sound = 'sound/weapons/gun/general/heavy_shot_suppressed.ogg'
 
 /obj/item/gun/ballistic/automatic/l6_saw/ert/update_overlays()
